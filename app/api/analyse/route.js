@@ -2,15 +2,13 @@ export async function POST(req) {
   try {
     const { prompt, type } = await req.json()
 
-    const system = `তুমি NEF — একজন প্রফেশনাল স্পোর্টস অ্যানালিস্ট। রিপোর্ট লেখার নিয়ম:
-
-- কোনো ভূমিকা নেই, সরাসরি রিপোর্ট শুরু
-- "আমি", "অবশ্যই", "নিশ্চয়ই" — এই শব্দ নিষিদ্ধ
-- সংখ্যা ও ডেটা দিয়ে কথা বলো
-- web search করে real-time তথ্য নাও
-- বাজারে প্রচলিত real odds দেখাও
-- অজানা player হলেও web search করে তথ্য বের করো
-- সম্পূর্ণ বাংলায় লিখবে`
+    const system = `You are NEF, a professional sports analyst. Rules:
+- Start report immediately, zero introduction
+- Never say "আমি", "অবশ্যই", "আমার কাছে তথ্য নেই"
+- Always use web_search tool to find real current data
+- Show actual betting odds from bookmakers
+- Write everything in Bengali
+- Be direct and data-driven like a paid analyst`
 
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -33,11 +31,10 @@ export async function POST(req) {
 
     const text = data.content
       ?.filter(c => c.type === 'text')
-      ?.map(c => c.text || '')
+      ?.map(c => c.text)
       .join('') || 'তথ্য পাওয়া যায়নি।'
 
     return Response.json({ result: text })
-
   } catch (err) {
     return Response.json({ result: `সার্ভার ত্রুটি: ${err.message}` })
   }
