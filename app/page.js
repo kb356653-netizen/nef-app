@@ -259,16 +259,12 @@ ${sport === 'Cricket' ? `| টোটাল রান ওভার | XXX.৫ | X.
                   </select>
                 </div>
                 <div>
-  <label style={s.label}>{sport === 'Cricket' ? 'ভেন্যু (Stadium)' : 'সারফেস / পিচ'}</label>
-  {sport === 'Cricket' ? (
-    <input style={s.input} value={surface} onChange={e=>setSurface(e.target.value)} placeholder="যেমন: Wankhede, Eden Gardens" />
-  ) : (
-    <select style={s.input} value={surface} onChange={e=>setSurface(e.target.value)}>
-      <option value="">নির্বাচন করুন</option>
-      {surfaces[sport].map(c=><option key={c}>{c}</option>)}
-    </select>
-  )}
-</div>
+                  <label style={s.label}>সারফেস / পিচ</label>
+                  <select style={s.input} value={surface} onChange={e=>setSurface(e.target.value)}>
+                    <option value="">নির্বাচন করুন</option>
+                    {surfaces[sport].map(c=><option key={c}>{c}</option>)}
+                  </select>
+                </div>
               </div>
               <div style={s.row2}>
                 <div>
@@ -285,18 +281,18 @@ ${sport === 'Cricket' ? `| টোটাল রান ওভার | XXX.৫ | X.
             {/* Players */}
             <div style={s.row2}>
               <div style={s.card}>
-                <div style={s.secTitle}>{sport === 'Tennis' ? '🟢 খেলোয়াড় ১' : '🟢 দল ১'}</div>
+                <div style={s.secTitle}>🟢 খেলোয়াড় ১</div>
                 <label style={s.label}>নাম *</label>
-                <input style={s.input} value={p1Name} onChange={e=>setP1Name(e.target.value)} placeholder={sport === 'Tennis' ? 'Jessica Pegula' : sport === 'Football' ? 'Real Madrid' : 'Mumbai Indians'} />
+                <input style={s.input} value={p1Name} onChange={e=>setP1Name(e.target.value)} placeholder="Jessica Pegula" />
                 <label style={s.label}>র‍্যাংকিং</label>
                 <input style={s.input} type="number" value={p1Rank} onChange={e=>setP1Rank(e.target.value)} placeholder="যেমন: 4" />
                 <label style={s.label}>বুকমেকার অডস</label>
                 <input style={s.input} type="number" value={p1Odd} onChange={e=>setP1Odd(e.target.value)} placeholder="যেমন: 1.65" step="0.01" />
               </div>
               <div style={s.card}>
-                <div style={s.secTitle}>{sport === 'Tennis' ? '🔴 খেলোয়াড় ২' : '🔴 দল ২'}</div>
+                <div style={s.secTitle}>🔴 খেলোয়াড় ২</div>
                 <label style={s.label}>নাম *</label>
-                <input style={s.input} value={p2Name} onChange={e=>setP2Name(e.target.value)} placeholder={sport === 'Tennis' ? 'Diana Shnaider' : sport === 'Football' ? 'Barcelona' : 'Chennai Super Kings'}/>
+                <input style={s.input} value={p2Name} onChange={e=>setP2Name(e.target.value)} placeholder="Diana Shnaider" />
                 <label style={s.label}>র‍্যাংকিং</label>
                 <input style={s.input} type="number" value={p2Rank} onChange={e=>setP2Rank(e.target.value)} placeholder="যেমন: 17" />
                 <label style={s.label}>বুকমেকার অডস</label>
