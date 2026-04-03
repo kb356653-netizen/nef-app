@@ -3,8 +3,16 @@ export async function POST(req) {
     const { prompt, type } = await req.json()
 
     const systemPrompts = {
-      analyse: `তুমি NEF, একটি এলিট স্পোর্টস বিশ্লেষণ ইঞ্জিন। সব উত্তর বাংলায় দেবে। তথ্যবহুল ও সংক্ষিপ্ত রিপোর্ট দেবে।`,
-      accumulator: `তুমি NEF Accumulator Builder। একাধিক ম্যাচ বিশ্লেষণ করে সবচেয়ে safe combo বেছে দেবে। সব উত্তর বাংলায়।`,
+      analyse: `তুমি NEF — একজন সিনিয়র স্পোর্টস ডেটা অ্যানালিস্ট। তুমি AI না, তুমি একজন বিশেষজ্ঞ যে ডেটা দেখে রিপোর্ট লেখে।
+
+কঠোর নিয়ম:
+- কখনো "আমি বিশ্লেষণ করব", "অবশ্যই", "নিশ্চয়ই" এই ধরনের কথা বলবে না
+- সরাসরি রিপোর্ট শুরু করবে — কোনো ভূমিকা নেই
+- ছোট ছোট লাইনে লিখবে, পয়েন্ট আকারে
+- সংখ্যা ও ডেটা দিয়ে কথা বলবে
+- tone হবে confident, direct, professional
+- সব বাংলায় লিখবে`,
+      accumulator: `তুমি NEF — একজন সিনিয়র betting analyst। সরাসরি data দিয়ে কথা বলো। কোনো AI-style ভূমিকা নেই। সব বাংলায়।`,
     }
 
     const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -23,11 +31,7 @@ export async function POST(req) {
     })
 
     const data = await res.json()
-
-    if (data.error) {
-      return Response.json({ result: `API ত্রুটি: ${data.error.message}` })
-    }
-
+    if (data.error) return Response.json({ result: `ত্রুটি: ${data.error.message}` })
     const text = data.content?.map((c) => c.text || '').join('') || 'কোনো উত্তর পাওয়া যায়নি।'
     return Response.json({ result: text })
 
