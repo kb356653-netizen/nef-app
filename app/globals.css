@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+Bengali:wght@400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --bg2: #111111;
+  --bg3: #1a1a1a;
+  --border: #2a2a2a;
+  --border2: #333;
+  --text: #e8e8e8;
+  --text2: #888;
+  --text3: #555;
+  --accent: #c8f135;
+  --accent2: #a0d420;
+  --red: #ff4444;
+  --green: #44ff88;
+  --blue: #4488ff;
+  --yellow: #ffcc44;
+  --font-mono: 'Space Mono', monospace;
+  --font-bn: 'Noto Sans Bengali', sans-serif;
+}
+
+html, body { background: var(--bg); color: var(--text); font-family: var(--font-bn); min-height: 100vh; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
